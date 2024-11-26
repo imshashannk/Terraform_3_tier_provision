@@ -5,10 +5,6 @@ variable "vpc_id" {
 
 
 
-variable "public_subnet" {
-  description = "Subnet ID where the EC2 instance will be launched"
-  type        = string
-}
 
 variable "security_group_name" {
   description = "Name of the security group for compute instances"
@@ -45,7 +41,4 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
-variable "tags" {
-  description = "Tags to apply to resources"
-  type        = map(string)
-}
+
