@@ -1,3 +1,9 @@
+# VPC Variables
+variable "vpc_name" {
+  description = "Name of the VPC"
+  type        = string
+}
+
 variable "cidr_block" {
   description = "CIDR block for the VPC"
   type        = string
@@ -18,9 +24,22 @@ variable "private_subnets" {
   type        = list(string)
 }
 
+variable "enable_nat_gateway" {
+  description = "Enable NAT Gateway in VPC"
+  type        = bool
+  default     = true
+}
+
+# Compute Variables
 variable "ami_id" {
   description = "AMI ID for EC2 instances"
   type        = string
+}
+
+variable "instance_count" {
+  description = "Number of EC2 instances to create"
+  type        = number
+  default     = 2
 }
 
 variable "instance_type" {
@@ -28,18 +47,9 @@ variable "instance_type" {
   type        = string
 }
 
-variable "db_allocated_storage" {
-  description = "Allocated storage for the RDS instance"
-  type        = number
-}
-
-variable "db_instance_class" {
-  description = "RDS instance class"
-  type        = string
-}
-
-variable "db_engine" {
-  description = "RDS engine type"
+# Database Variables
+variable "db_name" {
+  description = "Name of the RDS database"
   type        = string
 }
 
@@ -53,11 +63,7 @@ variable "db_password" {
   type        = string
 }
 
-variable "db_identifier" {
-  description = "Identifier for the RDS instance"
-  type        = string
-}
-
+# Tags
 variable "tags" {
   description = "Tags to apply to all resources"
   type        = map(string)

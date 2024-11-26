@@ -1,9 +1,9 @@
 output "instance_ids" {
-  description = "List of EC2 instance IDs"
-  value       = [aws_instance.web.id]
+  description = "IDs of the created EC2 instances"
+  value       = aws_instance.compute.*.id
 }
 
-output "instance_ips" {
-  description = "List of EC2 instance public IPs"
-  value       = [aws_instance.web.public_ip]
+output "instance_public_ips" {
+  description = "Public IPs of the created EC2 instances"
+  value       = aws_instance.compute.*.public_ip
 }
