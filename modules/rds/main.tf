@@ -9,7 +9,7 @@ resource "aws_db_instance" "rds_instance" {
   storage_type         = var.storage_type
   engine               = var.engine
   instance_class       = var.instance_class
-  name                 = var.db_name
+  identifier           = var.identifier
   username             = var.username
   password             = var.password
   publicly_accessible  = false
