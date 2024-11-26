@@ -14,19 +14,18 @@ module "vpc" {
 
 # Compute Module (Web Tier)
 module "compute" {
-  source = "./modules/compute"
-
-  # Arguments required by the compute module
-  allowed_cidrs        = ["0.0.0.0/0"] # Example: Allow traffic from all IPs
-  subnet_ids           = module.vpc.private_subnets # Link to VPC outputs
-  security_group_name  = "compute-sg" # Name of the security group
-  ingress_to_port      = 80           # Allow HTTP traffic
-  ingress_from_port    = 80           # Allow HTTP traffic
-  instance_count       = 2            # Number of EC2 instances to launch
-  description          = "Compute instances for web tier"
-  ami_id               = var.ami_id   # AMI ID for instances
-  instance_type        = var.instance_type # Instance type
-  tags                 = var.tags     # Common tags
+  source              = "./modules/compute"
+  vpc_id              = module.vpc.vpc_id
+  public_subnet       = module.vpc.public_subnets[0] # Example: Using the first public subnet
+  ami_id              = var.ami_id
+  instance_type       = var.instance_type
+  security_group_name = "web-sg"
+  description         = "Web Tier Compute Instances"
+  ingress_from_port   = 80
+  ingress_to_port     = 80
+  allowed_cidrs       = ["0.0.0.0/0"]
+  instance_count      = 2
+  tags                = var.tags
 }
 
 
