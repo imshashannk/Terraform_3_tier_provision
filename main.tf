@@ -22,12 +22,13 @@ module "compute" {
   security_group_name = "web-sg"
   description         = "Web Tier Compute Instances"
   ingress_from_port   = 80
-  subnet_ids          = 10.0.1.0/24
+  subnet_ids          = "10.0.1.0/24"
   ingress_to_port     = 80
   allowed_cidrs       = ["0.0.0.0/0"]
   instance_count      = 2
   tags                = var.tags
 }
+
 
 
 # Database Module (DB Tier)
