@@ -22,6 +22,7 @@ module "compute" {
   security_group_name = "web-sg"
   description         = "Web Tier Compute Instances"
   ingress_from_port   = 80
+  subnet_ids          = var.subnet_
   ingress_to_port     = 80
   allowed_cidrs       = ["0.0.0.0/0"]
   instance_count      = 2
