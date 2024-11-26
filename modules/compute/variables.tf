@@ -38,17 +38,6 @@ variable "subnet_ids" {
   description = "Subnets where EC2 instances will be launched"
 }
 
-variable "ami_id" {
-  type        = string
-  description = "AMI ID for the EC2 instances"
-}
 
-variable "instance_type" {
-  type        = string
-  description = "Instance type for the EC2 instances"
-}
 
-variable "tags" {
-  type        = map(string)
-  description = "Tags to apply to resources"
-}
+
