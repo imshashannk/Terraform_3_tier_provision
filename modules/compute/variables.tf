@@ -3,15 +3,7 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "ami_id" {
-  description = "AMI ID for EC2 instances"
-  type        = string
-}
 
-variable "instance_type" {
-  description = "EC2 instance type"
-  type        = string
-}
 
 variable "public_subnet" {
   description = "Subnet ID where the EC2 instance will be launched"
