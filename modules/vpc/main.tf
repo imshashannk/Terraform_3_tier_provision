@@ -1,14 +1,29 @@
-module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
- 
+resource "aws_vpc" "main" {
+  cidr_block = var.cidr_block
+  tags = merge(
+    var.tags,
+    { Name = "${var.tags["Project"]}-vpc" }
+  )
+}
 
-  name = var.vpc_name
-  cidr = var.cidr_block
+resource "aws_subnet" "public" {
+  count = length(var.public_subnets)
+  vpc_id     = aws_vpc.main.id
+  cidr_block = var.public_subnets[count.index]
+  availability_zone = var.azs[count.index]
+  tags = merge(
+    var.tags,
+    { Name = "${var.tags["Project"]}-public-${count.index}" }
+  )
+}
 
-  azs             = var.azs
-  public_subnets  = var.public_subnets
-  private_subnets = var.private_subnets
-
-  enable_nat_gateway = var.enable_nat_gateway
-  tags               = var.tags
+resource "aws_subnet" "private" {
+  count = length(var.private_subnets)
+  vpc_id     = aws_vpc.main.id
+  cidr_block = var.private_subnets[count.index]
+  availability_zone = var.azs[count.index]
+  tags = merge(
+    var.tags,
+    { Name = "${var.tags["Project"]}-private-${count.index}" }
+  )
 }

@@ -1,14 +1,14 @@
-output "rds_instance_id" {
-  description = "The ID of the RDS instance"
-  value       = aws_db_instance.rds_instance.id
+output "db_instance_id" {
+  description = "ID of the RDS instance"
+  value       = aws_db_instance.main.id
 }
 
-output "rds_endpoint" {
-  description = "The connection endpoint for the RDS instance"
-  value       = aws_db_instance.rds_instance.endpoint
+output "db_endpoint" {
+  description = "Endpoint of the RDS instance"
+  value       = aws_db_instance.main.endpoint
 }
 
-output "rds_security_group_id" {
-  description = "The ID of the security group for the RDS instance"
-  value       = aws_security_group.db_sg.id
+output "db_subnet_group_name" {
+  description = "Name of the RDS subnet group"
+  value       = aws_db_subnet_group.main.name
 }

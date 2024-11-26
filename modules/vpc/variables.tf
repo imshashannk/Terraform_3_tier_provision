@@ -1,28 +1,24 @@
-variable "vpc_name" {
-  type = string
-}
-
 variable "cidr_block" {
-  type = string
+  description = "CIDR block for the VPC"
+  type        = string
 }
 
 variable "azs" {
-  type = list(string)
+  description = "List of availability zones"
+  type        = list(string)
 }
 
 variable "public_subnets" {
-  type = list(string)
+  description = "Public subnets CIDR blocks"
+  type        = list(string)
 }
 
 variable "private_subnets" {
-  type = list(string)
-}
-
-variable "enable_nat_gateway" {
-  type    = bool
-  default = true
+  description = "Private subnets CIDR blocks"
+  type        = list(string)
 }
 
 variable "tags" {
-  type = map(string)
+  description = "Tags to apply to VPC and subnets"
+  type        = map(string)
 }
